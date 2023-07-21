@@ -1,0 +1,48 @@
+.event-log-contents {
+  width: 18rem;
+  height: 5rem;
+  border: 1px solid black;
+  margin: 0.2rem;
+  padding: 0.2rem;
+}
+
+.example {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.example .btns {
+  display: flex;
+  gap: 10px;
+}
+
+video {
+  width: 100%;
+}
+
+.event-log {
+  grid-area: log;
+}
+
+.event-log > label {
+  display: block;
+}
+
+.online-progress {
+  width: 100%;
+  height: 10px;
+  border: 1px solid brown;
+  display: flex;
+  position: relative;
+}
+
+.online-progress > div {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background: goldenrod;
+}
