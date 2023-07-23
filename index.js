@@ -2,7 +2,7 @@ const btns = document.querySelector(".btns");
 const videoRef = document.querySelector("video");
 const onlineProgress = document.querySelector(".online-progress");
 const videoList = [
-  "http://vjs.zencdn.net/v/oceans.mp4",
+  "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
   "https://media.w3.org/2010/05/sintel/trailer.mp4",
 ];
 
@@ -18,29 +18,32 @@ const handleVideoEvent = () => {
 
   let timeRange = videoRef.buffered;
   const timeRangeLength = timeRange.length;
-  console.log(`timeRange`, timeRange);
+  // console.log(`timeRange`, timeRange);
 
   let partList = document.querySelectorAll(`.player-bar-progress-part`);
-  let partListLength = partList.length;
-
-  while (partListLength < timeRangeLength) {
-    let div = document.createElement("div");
-    div.setAttribute("class", `player-bar-progress-part`);
-    onlineProgress.appendChild(div);
-    partListLength++;
-  }
 
   for (let i = 0; i <= timeRangeLength - 1; i++) {
     let start = timeRange.start(i);
     let end = timeRange.end(i);
+    // console.log(`start`, start);
+    // console.log(`end`, end);
+    // console.log(`duration`, duration);
+
     progressPartMap[i] = {
       left: (start / duration) * 100,
       width: ((end - start) / duration) * 100,
     };
-    if (partList[i]) {
+    if (!partList[i]) {
+      let div = document.createElement("div");
+      div.setAttribute("class", `player-bar-progress-part`);
+      div.style.setProperty("left", progressPartMap[i].left + "%");
+      div.style.setProperty("width", progressPartMap[i].width + "%");
+      onlineProgress.appendChild(div);
+    } else {
       partList[i].style.left = progressPartMap[i].left + "%";
       partList[i].style.width = progressPartMap[i].width + "%";
     }
+
     // console.log(`timeRange.start(${i})`, timeRange.start(i));
     // console.log(`timeRange.end(${i})`, timeRange.end(i));
   }
